@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vizuly - Weighted Tree</title>
+
+    <!-- We use google fonts for many of the examples, but they are not necessary -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto|Raleway:600,400,200' rel='stylesheet' type='text/css'>
+
+    <!-- Test container style sheets -->
+    <link rel="stylesheet" href="styles/examples.css">
+
+    <!-- Vizuly specific style sheets -->
+    <link rel="stylesheet" href="../lib/styles/vizuly.css">
+    <link rel="stylesheet" href="../lib/styles/vizuly_weightedtree.css">
+
+    <!-- Supporting test container files:  Vizuly does NOT rely on these -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../lib/styles/cssmenu.css">
+    <script type="text/javascript" src="../lib/jquery-2.1.1.min.js"></script>
+    <script src="../lib/cssmenu.js"></script>
+
+    <!-- D3.js ... of course! -->
+    <script src="lib/d3.min.js"></script>
+
+    <!-- debug source scripts: start --> <!--
+    <script src="src/core/_namespace.js"></script>
+
+
+
+
+
+    <script src="src/core/component.js"></script>
+    <script src="src/core/data.js"></script>
+    <script src="src/core/util.js"></script>
+
+    <script src="src/core/format.js"></script>
+
+    <script src="src/svg/gradient.js"></script>
+    <script src="src/svg/filter.js"></script>
+    <script src="src/viz/weightedtree.js"></script>
+    <script src="src/theme/weightedtree.js"></script>
+
+    --> <!-- debug source scripts: end -->
+
+    <script src="lib/vizuly_core.min.js"></script>
+	<script src="lib/vizuly_weightedtree.min.js"></script>
+
+    <script src="weightedtree_test.js"></script>
+
+</head>
+
+<body>
+
+
+<!-- Our main content container-->
+<div class="container" style="width:100%">
+    <div id="viz_container" class="z-depth-3">
+    </div>
+    
+</div>
+
+
+
+<script>
+    //Once the document is ready we set javascript and page settings
+    var screenWidth;
+    var screenHeight;
+
+    $(document).ready(function () {
+
+        var rect;
+        if (self==top) {
+            rect = document.body.getBoundingClientRect();
+        }
+        else {
+            rect =  parent.document.body.getBoundingClientRect();
+        }
+
+        //Set display size based on window size.
+        screenWidth = (rect.width < 960) ? Math.round(rect.width*1) : Math.round((rect.width ) *1);
+
+        screenHeight=950;
+
+        d3.select("#currentDisplay")
+                .attr("item_value", (String(screenWidth) + "," + String(screenHeight)))
+                .attr("class", "selected")
+                .html("<a>" + screenWidth + "px - " + screenHeight + "px</a>");
+
+
+        $("#cssmenu").menumaker({
+            title: "VIZULY WEIGHTED TREE",
+            format: "multitoggle"
+        });
+
+        // Set the size of our container element.
+        viz_container = d3.selectAll("#viz_container")
+                .style("width", screenWidth + "px")
+                .style("height", screenHeight + "px");
+
+
+        loadData();
+
+
+    });
+
+</script>
+
+
+</body>
+
+
+</html>
