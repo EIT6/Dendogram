@@ -254,7 +254,7 @@ function changeSkin(val) {
 //This changes the size of the component by adjusting the width/height;
 function changeSize(val) {
     var s = String(val).split(",");
-    viz_container.transition().duration(400).style('width', s[0] +'px').style('height', s[1] +'px');
+    viz_container.transition().duration(400).style('width', 2000 + "px").style('height', 1000 + "px");
     viz.width(s[0]).height(s[1]*.8).update();
 }
 
